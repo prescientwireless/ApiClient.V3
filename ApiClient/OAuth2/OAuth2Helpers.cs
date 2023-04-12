@@ -44,7 +44,7 @@ namespace ApiClient.OAuth2
         public static bool IsTokenStale(string content)
         {
             var errors = JsonConvert.DeserializeObject<OAuth2Error>(content);
-            return errors.HttpMessage.ToLower().Contains("unauthorized");
+            return errors.ErrorMessage.ToLower().Contains("unauthorized") || (error.StatusCode == 401);
         }
 
         /// <summary>
